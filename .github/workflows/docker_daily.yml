@@ -1,0 +1,38 @@
+name: Docker Daily
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Runs daily at 02:00 UTC
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  docker-daily:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build the Docker image
+        run: |
+          docker build --cache-from=type=local,src=/tmp/.buildx-cache \
+                       -t inkontru-scraper:latest .
+
+      - name: Run the Docker container and show logs
+        env:
+          GOOGLE_SHEET_CREDENTIALS: ${{ secrets.GOOGLE_SHEET_CREDENTIALS }}
+        run: |
+          docker run --name inkontru-scraper-container -e GOOGLE_SHEET_CREDENTIALS="$GOOGLE_SHEET_CREDENTIALS" inkontru-scraper:latest
+          docker logs inkontru-scraper-container
+          docker rm inkontru-scraper-container
