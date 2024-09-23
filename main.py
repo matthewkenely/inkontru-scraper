@@ -5,7 +5,7 @@ from Scraper import Scraper
 import pandas as pd
 import sheets
 
-LINK_LIMIT = 50
+LINK_LIMIT = 15
 
 def get_links(worksheet, data, column_index):
     data_links = [d[0] for d in data]
@@ -79,7 +79,8 @@ if __name__ == "__main__":
         "zfin_malta" : "//*[contains(@href, 'www.zfinmalta.org/event/')]", ## working
         "kreattivita" : "//*[contains(@href, 'en/event/') and not(contains(@href, '/all')) and substring-after(@href, 'en/event/') != '']", ## working
         "micas" : "//*[contains(@href, '/events/') and not(contains(@href, '/feed')) and not(@href = 'https://micas.art/events/') and not(@href = 'https://micas.art/mt/events/')]", ## no current events
-        "tnd" : "//*[contains(@href, '/event-details/')]", ## working
+        # "tnd" : "//*[contains(@href, '/event-details/')]", ## working
+        "tnd" : "//*[contains(@href, '/event-details/') and not(contains(@href, 'facebook')) and not(contains(@href, 'twitter'))]",
         "malta_orchestra" : "//*[contains(@href, '/events/')]", ## working but location is ambiguous
         # "arts_weven" : "", ## does not have event pages
         "ziguzajg" : "//*[contains(@href, 'ziguzajg.org/') and contains(@class, 'elementor-button')]", ## working but includes old events 
