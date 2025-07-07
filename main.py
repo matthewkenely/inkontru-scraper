@@ -12,13 +12,16 @@ def get_links(worksheet, data, column_index):
     scraper = Scraper(sources_page_links, sources_events_links)
     read_from_file = False
 
+    events_links = set()
     if read_from_file:
         events_links = scraper.read_txt_file("events_links.txt")
     else:
-        events_links = set()
         events_links = scraper.populate_links(events_links, sources_events_links, limit_links=LINK_LIMIT)
-
-    # print("Events Links:", events_links)
+    
+    ## if events_links is none...
+    if not events_links:
+        print(f"events_links: {events_links}")
+        return
 
     event_details = []
     count_ = 0 
@@ -106,4 +109,6 @@ if __name__ == "__main__":
     print(f"Existing Event Links: {len(existing_event_links)}")
 
     events_ = get_links(worksheet, data, column_index)
-    print("Added events:", [i[0] for i in events_])
+    if events_:
+        if len(events_) > 0:      
+            print("Added events:", [i[0] for i in events_])

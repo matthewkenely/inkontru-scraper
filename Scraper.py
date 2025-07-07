@@ -287,7 +287,7 @@ class Scraper:
             for item in list_:
                 f.write(item)
 
-        print("🟢 List saved to", filename)
+        print("List saved to:", filename)
 
     def read_txt_file(self, filename):
         list_ = []
@@ -299,7 +299,7 @@ class Scraper:
 
    
     def events_by_xpaths(self, driver, xpaths):
-        print(f"🔴🔴🔴🔴 Scraping Event from {driver.current_url}")
+        print(f"Scraping Event from: {driver.current_url}")
         # sleep(2)
 
         try:
@@ -475,9 +475,9 @@ class Scraper:
         except Exception as exc:
             # Handle other exceptions gracefully
             print(f"🔴 Error occurred during scraping link {driver.current_url}: {exc}")
-            print(f'Current key is: {key}')
+            # print(f'Current key is: {key}')
             sleep(2)
-            return e
+            return None
 
     def scrape_events(self, driver, source):
     # if "teatrumalta" in driver.current_url or "festivals" in driver.current_url: # or
