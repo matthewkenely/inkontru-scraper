@@ -13,9 +13,10 @@ RUN apt-get update \
     && apt-get install -y \
         libnss3 \
         libcups2 \
-        libgconf-2-4 \
+        # libgconf-2-4 \
         libxss1 \
-        libappindicator1 \
+        # libappindicator1 \
+        libayatana-appindicator1 \
         fonts-liberation \
         libasound2 \
         libatk-bridge2.0-0 \
