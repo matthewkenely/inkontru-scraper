@@ -10,33 +10,30 @@ ENV HOST 0.0.0.0
 RUN apt-get update && apt-get install -y curl wget unzip gnupg
 
 RUN apt-get update \
-    && apt-get install -y \
-        libnss3 \
-        libcups2 \
-        # libgconf-2-4 \
-        libxss1 \
-        # libappindicator1 \
-        libayatana-appindicator1 \
-        fonts-liberation \
-        libasound2 \
-        libatk-bridge2.0-0 \
-        libatk1.0-0 \
-        libcairo2 \
-        libcups2 \
-        libgdk-pixbuf2.0-0 \
-        libgtk-3-0 \
-        libnspr4 \
-        libpango-1.0-0 \
-        libx11-xcb1 \
-        libxtst6 \
-        xdg-utils \
-        lsb-release \
-        wget \
-        unzip \
-        gnupg \
-        curl \
-        ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+ && apt-get install -y --no-install-recommends \
+    libnss3 \
+    libcups2 \
+    libxss1 \
+    libayatana-appindicator1 \
+    fonts-liberation \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libcairo2 \
+    libgdk-pixbuf-2.0-0 \
+    libgtk-3-0 \
+    libnspr4 \
+    libpango-1.0-0 \
+    libx11-xcb1 \
+    libxtst6 \
+    xdg-utils \
+    lsb-release \
+    wget \
+    unzip \
+    gnupg \
+    curl \
+    ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
 
 
 # Install Chrome
