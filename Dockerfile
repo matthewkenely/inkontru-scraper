@@ -14,7 +14,6 @@ RUN apt-get update \
     libnss3 \
     libcups2 \
     libxss1 \
-    libayatana-appindicator1 \
     fonts-liberation \
     libasound2 \
     libatk-bridge2.0-0 \
@@ -27,13 +26,13 @@ RUN apt-get update \
     libx11-xcb1 \
     libxtst6 \
     xdg-utils \
-    lsb-release \
     wget \
     unzip \
     gnupg \
     curl \
     ca-certificates \
  && rm -rf /var/lib/apt/lists/*
+
 
 
 # Install Chrome
